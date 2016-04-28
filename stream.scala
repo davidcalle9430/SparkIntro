@@ -23,13 +23,13 @@ val words = lines.flatMap(_.split(" "))
 
 object SecondValueOrdering extends Ordering [(String, Int)] {
   def compare(a: (String, Int), b: (String, Int)) = {
-    a._2 compare b._2
+    b._2 compare a._2
   }
 }
 
 def sendData(word: String , count : Int ) = {
   val httpPost = new HttpPost("http://spring-server-galileoacmpuj.c9users.io/api/palabras")
-  val json = "{ \"palabra\" : \"" + word + "\" , \"count\" : \""+ count +"\"  }";
+  val json = "{ \"name\" : \"" + word + "\" , \"size\" : \""+ count +"\"  }";
   httpPost.setHeader("Accept", "application/json");
   httpPost.setHeader("Content-type", "application/json")
   val entity = new StringEntity(json);
